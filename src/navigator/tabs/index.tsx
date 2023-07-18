@@ -5,7 +5,6 @@ import RateTableScreen from '../../screens/rate-table';
 import TopCurrenciesScreen from '../../screens/top-currencies';
 import {TabBarIconProps} from '../../types';
 import AppTabIcons, {AppTabIconNames} from '../../components/app-tab-icons';
-import {GestureResponderEvent, TouchableOpacity} from 'react-native';
 import {palette} from '../../theme/colors';
 import EmptyScreen from '../../components/empty-screen';
 
@@ -18,19 +17,8 @@ export type RootTabParamList = {
 };
 
 export const RootTab = createBottomTabNavigator<RootTabParamList>();
-const renderAppTabIcon = (
-  name: AppTabIconNames,
-  pressAction?: (e?: GestureResponderEvent) => void,
-) => {
+const renderAppTabIcon = (name: AppTabIconNames) => {
   return function TabIcon(props: TabBarIconProps) {
-    if (pressAction != null) {
-      return (
-        <TouchableOpacity onPress={pressAction}>
-          <AppTabIcons name={name} {...props} />
-        </TouchableOpacity>
-      );
-    }
-
     return <AppTabIcons name={name} {...props} />;
   };
 };
@@ -69,9 +57,13 @@ export default function AppDefaultTabs({navigation}: any) {
         component={EmptyScreen}
         options={{
           tabBarLabel: '',
-          tabBarIcon: renderAppTabIcon('settings', () =>
-            navigation.navigate('Settings'),
-          ),
+          tabBarIcon: renderAppTabIcon('settings'),
+        }}
+        listeners={{
+          tabPress: event => {
+            event.preventDefault();
+            navigation.navigate('Settings');
+          },
         }}
       />
     </RootTab.Navigator>

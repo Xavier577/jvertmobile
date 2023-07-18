@@ -3,3 +3,5 @@ export type TabBarIconProps = Partial<{
   color: string;
   size: number;
 }>;
+
+export type DynamicObject<T = any> = {[name: string]: T};

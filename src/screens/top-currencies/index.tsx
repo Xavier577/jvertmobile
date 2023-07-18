@@ -10,6 +10,7 @@ export default function TopCurrenciesScreen() {
       style={{
         ...GlobalStyles.rootView,
         justifyContent: 'center',
+        paddingHorizontal: 5,
         backgroundColor: isDark ? palette.primaryDark : palette.primaryLight,
       }}>
       <Text
