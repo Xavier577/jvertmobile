@@ -1,25 +1,48 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {RootStackParamList} from '../root-navigator';
 import {ConvertCurrencyScreen} from '../../screens/convert-currency';
 import RateTableScreen from '../../screens/rate-table';
 import TopCurrenciesScreen from '../../screens/top-currencies';
-import SettingsScreen from '../../screens/settings';
 import {TabBarIconProps} from '../../types';
 import AppTabIcons, {AppTabIconNames} from '../../components/app-tab-icons';
+import {GestureResponderEvent, TouchableOpacity} from 'react-native';
+import {palette} from '../../theme/colors';
+import EmptyScreen from '../../components/empty-screen';
 
-export const RootTab = createBottomTabNavigator<RootStackParamList>();
-const renderAppTabIcon = (name: AppTabIconNames) => {
+export type RootTabParamList = {
+  RateTable: any;
+  ConvertCurrency: any;
+  TopCurrencies: any;
+  SettingsRedirect: any;
+  Home: any;
+};
+
+export const RootTab = createBottomTabNavigator<RootTabParamList>();
+const renderAppTabIcon = (
+  name: AppTabIconNames,
+  pressAction?: (e?: GestureResponderEvent) => void,
+) => {
   return function TabIcon(props: TabBarIconProps) {
+    if (pressAction != null) {
+      return (
+        <TouchableOpacity onPress={pressAction}>
+          <AppTabIcons name={name} {...props} />
+        </TouchableOpacity>
+      );
+    }
+
     return <AppTabIcons name={name} {...props} />;
   };
 };
 
-export default function AppDefaultTabs() {
+export default function AppDefaultTabs({navigation}: any) {
   return (
     <RootTab.Navigator
       initialRouteName={'ConvertCurrency'}
-      screenOptions={{headerShown: false}}>
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {backgroundColor: palette.primary},
+      }}>
       <RootTab.Screen
         name={'RateTable'}
         component={RateTableScreen}
@@ -42,9 +65,14 @@ export default function AppDefaultTabs() {
         }}
       />
       <RootTab.Screen
-        name={'Settings'}
-        component={SettingsScreen}
-        options={{tabBarLabel: '', tabBarIcon: renderAppTabIcon('settings')}}
+        name={'SettingsRedirect'}
+        component={EmptyScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: renderAppTabIcon('settings', () =>
+            navigation.navigate('Settings'),
+          ),
+        }}
       />
     </RootTab.Navigator>
   );

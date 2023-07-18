@@ -1,11 +1,26 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, Text, useColorScheme, View} from 'react-native';
 import Styles from './styles';
+import GlobalStyles from '../../theme/styles.global';
+import {palette} from '../../theme/colors';
 
 export function ConvertCurrencyScreen() {
+  const isDark = useColorScheme() === 'dark';
+
   return (
-    <View style={Styles.rootView}>
-      <Text style={Styles.text}>Convert currencies</Text>
+    <View
+      style={{
+        ...GlobalStyles.rootView,
+        ...Styles.screenRootView,
+        backgroundColor: isDark ? palette.primaryDark : palette.primaryLight,
+      }}>
+      <Text
+        style={{
+          ...GlobalStyles.text,
+          color: isDark ? palette.primaryLight : palette.primaryDark,
+        }}>
+        Convert currencies
+      </Text>
     </View>
   );
 }
