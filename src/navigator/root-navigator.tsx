@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SettingsScreen from '../screens/settings';
 import AppDefaultTabs from './tabs';
+import {palette} from '../theme/colors';
 
 export type RootStackParamList = {
   Settings: any;
@@ -17,6 +18,7 @@ export default function RootNavigator() {
       <RootStack.Navigator
         initialRouteName={'Home'}
         screenOptions={{
+          headerStyle: {backgroundColor: palette.primary},
           headerShown: false,
         }}>
         <RootStack.Screen name={'Home'} component={AppDefaultTabs} />

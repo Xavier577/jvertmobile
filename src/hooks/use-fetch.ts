@@ -12,11 +12,10 @@ export default function useFetch<T = any>(
     dataFetcher
       .then(result => {
         setData(result);
-        console.log('mount');
         setIsDataReady(true);
       })
       .catch(err => setError(err));
-  }, []);
+  }, [dataFetcher]);
 
   return [data, error, isDataReady];
 }

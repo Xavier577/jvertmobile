@@ -1,13 +1,8 @@
 import {StyleSheet} from 'react-native';
-import {windowDimensions} from '../../theme/styles.global';
+import {windowDimensions} from '../../../theme/styles.global';
 
 export default StyleSheet.create({
-  screenRootView: {
-    justifyContent: 'center',
-    alignContent: 'center',
-  },
-
-  customNumberPad: {
+  keypad: {
     backgroundColor: 'transparent',
     height: windowDimensions.height / 2,
     display: 'flex',
@@ -18,7 +13,7 @@ export default StyleSheet.create({
     paddingVertical: 5,
   },
 
-  customNumberPadRow: {
+  keypadRow: {
     display: 'flex',
     flexDirection: 'row',
     alignContent: 'center',
@@ -26,7 +21,7 @@ export default StyleSheet.create({
     flex: 1,
   },
 
-  customNumberPadColumn: {
+  keypadColumn: {
     width: 80,
     height: 80,
     display: 'flex',
@@ -34,7 +29,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
-  customNumberPadKey: {
+  key: {
     fontSize: 24,
   },
 });
