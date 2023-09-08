@@ -27,36 +27,13 @@ export function ConvertCurrencyScreen() {
           ...Styles.screenRootView,
           backgroundColor: isDark ? palette.primaryDark : palette.primaryLight,
         }}>
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            flex: 1,
-          }}>
-          <View
-            style={{
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            {/* space */}
-
-            <View
-              style={{
-                width: 300,
-                height: 100,
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+        <View style={Styles.currencyConversionScreenView}>
+          <View style={Styles.exchangedOutputViewContainer}>
+            <View style={Styles.exchangeOutputView}>
               <View>
                 <Text
                   style={{
-                    fontSize: 20,
+                    ...Styles.exchangeOutputValue,
                     color: isDark
                       ? palette.textColorDarkMode
                       : palette.textColorLightMode,
@@ -65,35 +42,15 @@ export function ConvertCurrencyScreen() {
                 </Text>
               </View>
             </View>
-
-            {/* space */}
           </View>
 
-          <View
-            style={{
-              height: 100,
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 25,
-            }}>
-            <View
-              style={{
-                width: 100,
-                height: 50,
-                backgroundColor: 'rgba(217,217,217,0.1)',
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                paddingHorizontal: 5,
-              }}>
+          <View style={Styles.currencySelectorView}>
+            <View style={Styles.currencyFromSelector}>
               {data != null ? (
                 <>
                   <Text
                     style={{
-                      fontSize: 18,
+                      ...Styles.currencyName,
                       color: isDark
                         ? palette.textColorDarkMode
                         : palette.textColorLightMode,
@@ -101,10 +58,7 @@ export function ConvertCurrencyScreen() {
                     {data?.supportedCurrenciesMap?.NGN?.currencyCode}
                   </Text>
                   <Image
-                    style={{
-                      width: 30,
-                      height: 22.5,
-                    }}
+                    style={Styles.currencyFlag}
                     source={{
                       uri: data?.supportedCurrenciesMap?.NGN?.icon,
                     }}
@@ -117,32 +71,19 @@ export function ConvertCurrencyScreen() {
 
             <SwitchIcon width={30} height={30} />
 
-            <View
-              style={{
-                width: 100,
-                height: 50,
-                backgroundColor: 'rgba(217,217,217,0.1)',
-                display: 'flex',
-                flexDirection: 'row-reverse',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                paddingHorizontal: 5,
-              }}>
+            <View style={Styles.currencyToSelector}>
               {data != null ? (
                 <>
                   <Text
                     style={{
-                      fontSize: 18,
+                      ...Styles.currencyName,
                       color: isDark ? 'whitesmoke' : palette.primaryDark,
                     }}>
                     {data?.supportedCurrenciesMap?.USD?.currencyCode}
                   </Text>
 
                   <Image
-                    style={{
-                      width: 30,
-                      height: 22.5,
-                    }}
+                    style={Styles.currencyFlag}
                     source={{
                       uri: data?.supportedCurrenciesMap?.USD?.icon,
                     }}
@@ -154,17 +95,10 @@ export function ConvertCurrencyScreen() {
             </View>
           </View>
 
-          <View
-            style={{
-              height: 50,
-              display: 'flex',
-              flexDirection: 'row-reverse',
-              alignItems: 'center',
-            }}>
+          <View style={Styles.exchangeInputView}>
             <Text
               style={{
-                fontSize: 24,
-                marginRight: 25,
+                ...Styles.exchangeInput,
                 color: isDark ? 'whitesmoke' : palette.primaryDark,
               }}>
               0

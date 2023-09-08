@@ -10,9 +10,9 @@ class Key extends Instantiable<Key> {
 }
 
 enum KEY_IDS {
-  NUM_KEY = 'numberKey',
-  BACKSPACE = 'backspaceKey',
-  ENTER_KEY = 'enterKey',
+  NUM_KEY = 'number_key',
+  BACKSPACE = 'backspace_key',
+  ENTER_KEY = 'enter_key',
 }
 
 const keypadNumbers: Key[][] = [
@@ -38,12 +38,12 @@ const keypadNumbers: Key[][] = [
   ],
 ];
 
-export interface KeypadProps {
+export type KeypadProps = {
   colorMode?: 'light' | 'dark' | null;
   numberKeyPressAction?: (e: GestureResponderEvent) => void;
   backspaceKeyPressAction?: (e: GestureResponderEvent) => void;
   enterKeyPressAction?: (e: GestureResponderEvent) => void;
-}
+};
 
 export default function Keypad({
   colorMode = 'light',

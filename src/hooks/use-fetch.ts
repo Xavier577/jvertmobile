@@ -14,7 +14,9 @@ export default function useFetch<T = any>(
         setData(result);
         setIsDataReady(true);
       })
-      .catch(err => setError(err));
+      .catch(err => {
+        setError(err);
+      });
   }, [dataFetcher]);
 
   return [data, error, isDataReady];
